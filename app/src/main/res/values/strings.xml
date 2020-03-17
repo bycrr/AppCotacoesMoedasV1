@@ -1,0 +1,17 @@
+<resources>
+  <string name="app_name">Cotações de Moedas</string>
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="nav_header_title">Cotações de Moedas</string>
+  <string name="nav_header_subtitle">Referente ao Bitcoin</string>
+  <string name="nav_header_desc">Navigation header</string>
+  <string name="action_sair">Sair</string>
+
+  <string name="menu_config">Configurações</string>
+  <string name="menu_coins">Moedas</string>
+  <string name="menu_quotation">Cotações</string>
+
+  <string name="config_fragment">Config Fragment. Arg: %1$s</string>
+  <string name="coins_fragment">Coins Fragment. Arg: %1$s</string>
+  <string name="quotation_fragment">Quotation Fragment. Arg: %1$s</string>
+</resources>

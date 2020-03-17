@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_config"
+            android:icon="@drawable/ic_config"
+            android:title="@string/menu_config" />
+        <item
+            android:id="@+id/nav_coins"
+            android:icon="@drawable/ic_coins"
+            android:title="@string/menu_coins" />
+        <item
+            android:id="@+id/nav_quotation"
+            android:icon="@drawable/ic_quot3"
+            android:title="@string/menu_quotation" />
+    </group>
+  <item android:title="Compartilhar">
+    <menu>
+      <item
+        android:id="@+id/nav_share"
+        android:icon="@drawable/ic_menu_share"
+        android:title="Compartilhar app" />
+
+    </menu>
+  </item>
+
+</menu>
