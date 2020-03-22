@@ -14,4 +14,7 @@
   <string name="config_fragment">Config Fragment. Arg: %1$s</string>
   <string name="coins_fragment">Coins Fragment. Arg: %1$s</string>
   <string name="quotation_fragment">Quotation Fragment. Arg: %1$s</string>
+    <string name="txtTituloMoeda">Titulo da Moeda</string>
+    <string name="txtDataHora">Data e Hora</string>
+  <string name="txtValor">Valor</string>
 </resources>
