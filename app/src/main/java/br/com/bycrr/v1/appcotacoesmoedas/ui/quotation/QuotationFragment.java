@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 
 import br.com.bycrr.v1.appcotacoesmoedas.R;
 import br.com.bycrr.v1.appcotacoesmoedas.adapter.QuotationListAdapter;
@@ -23,10 +24,15 @@ public class QuotationFragment extends Fragment {
   ListView listView;
   //CoinController coinController;
   View view;
+  ArrayList<Coin> coinArrayList;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+  }
+
+  public QuotationFragment(ArrayList<Coin> coinList) {
+    this.coinArrayList = coinList;
   }
 
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,19 +50,38 @@ public class QuotationFragment extends Fragment {
     //coinController = new CoinController(getContext());
     listView = view.findViewById(R.id.listview);
     //datasetMediaEscolar = mediaEscolarController.getAllResultadoFinal();
-    Coin coin = new Coin();
-    coin.setTitle("BitCoin");
-    coin.setDateTime("22/03/2020 16:30h");
-    coin.setValue(BigDecimal.valueOf(10d));
 
-    // TODO: arrumar estes mocks
-    ArrayList<Coin> coinArrayList = new ArrayList<>();
-    coinArrayList.add(coin);
+    //coinArrayList = mockFakeData();
+    /*GetOnlineQuotations task = new GetOnlineQuotations(coinArrayList, getContext());
+    task.execute();*/
 
     //final ResultadoFinalListAdapter adapter = new ResultadoFinalListAdapter(datasetMediaEscolar, getContext());
     final QuotationListAdapter adapter = new QuotationListAdapter(coinArrayList, getContext());
     listView.setAdapter(adapter);
 
     return view;
+  }
+
+  private ArrayList<Coin> mockFakeData() {
+    ArrayList<Coin> coinArrayList = new ArrayList<>();
+    Date data = new Date(System.currentTimeMillis());
+
+    Coin coin = new Coin();
+    coin.setTitle("BitCoin");
+    coin.setSymbol("B$ 1 = R$ ");
+    //coin.setDateTime("22/03/2020 16:30h");
+    coin.setDateTime(data.toString());
+    coin.setValueBid(BigDecimal.valueOf(10d));
+    coinArrayList.add(coin);
+
+    coin = new Coin();
+    coin.setTitle("Dollar");
+    coin.setSymbol("US$ 1 = R$ ");
+    //coin.setDateTime("22/03/2020 16:30h");
+    coin.setDateTime(data.toString());
+    coin.setValueBid(BigDecimal.valueOf(10d));
+    coinArrayList.add(coin);
+
+    return coinArrayList;
   }
 }

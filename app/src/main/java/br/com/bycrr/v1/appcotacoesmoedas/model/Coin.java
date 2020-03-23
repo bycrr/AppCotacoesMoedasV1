@@ -3,9 +3,12 @@ package br.com.bycrr.v1.appcotacoesmoedas.model;
 import java.math.BigDecimal;
 
 public class Coin {
-  private String title;
-  private String dateTime;
-  private BigDecimal value;
+  private String title;         // name
+  private String code;          // code
+  private String symbol;        // "US$", ...
+  private String dateTime;      // create_date
+  private BigDecimal valueBid;  // compra
+  private BigDecimal valueAsk;  // venda
 
   public String getTitle() {
     return title;
@@ -13,6 +16,22 @@ public class Coin {
 
   public void setTitle(String title) {
     this.title = title;
+  }
+
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  public String getSymbol() {
+    return symbol;
+  }
+
+  public void setSymbol(String symbol) {
+    this.symbol = symbol;
   }
 
   public String getDateTime() {
@@ -23,11 +42,19 @@ public class Coin {
     this.dateTime = dateTime;
   }
 
-  public BigDecimal getValue() {
-    return value;
+  public BigDecimal getValueBid() {
+    return valueBid;
   }
 
-  public void setValue(BigDecimal value) {
-    this.value = value;
+  public void setValueBid(BigDecimal valueBid) {
+    this.valueBid = valueBid;
+  }
+
+  public BigDecimal getValueAsk() {
+    return valueAsk;
+  }
+
+  public void setValueAsk(BigDecimal valueAsk) {
+    this.valueAsk = valueAsk;
   }
 }

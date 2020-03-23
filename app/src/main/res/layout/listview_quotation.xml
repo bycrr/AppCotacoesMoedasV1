@@ -53,6 +53,13 @@
       android:orientation="horizontal">
 
       <TextView
+        android:id="@+id/txtSimbolo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simbolo"
+        android:textSize="30sp"/>
+
+      <TextView
         android:id="@+id/txtValor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -26,6 +26,7 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
     TextView txtTituloMoeda;
     TextView txtDataHora;
     TextView txtValor;
+    TextView txtSimbolo;
     /*ImageView imgLogo;
     ImageView imgConsultar;
     ImageView imgEditar;
@@ -37,6 +38,12 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
     super(context, R.layout.listview_quotation, datasetCoin);
     this.dados = datasetCoin;
     this.context = context;
+  }
+
+  public void atualizarLista(ArrayList<Coin> novosDados) {
+    this.dados.clear();
+    this.dados.addAll(novosDados);
+    notifyDataSetChanged();
   }
 
   @Override
@@ -62,6 +69,7 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
       linha.txtTituloMoeda = linhaDataSet.findViewById(R.id.txtTituloMoeda);
       linha.txtDataHora = linhaDataSet.findViewById(R.id.txtDataHora);
       linha.txtValor = linhaDataSet.findViewById(R.id.txtValor);
+      linha.txtSimbolo = linhaDataSet.findViewById(R.id.txtSimbolo);
       /*linha.imgLogo = linhaDataSet.findViewById(R.id.imgLogo);*/
       //linha.imgSalvar = linhaDataSet.findViewById(R.id.imgSalvar);
       linhaDataSet.setTag(linha);
@@ -71,7 +79,8 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
     }
     linha.txtTituloMoeda.setText(coin.getTitle());
     linha.txtDataHora.setText(coin.getDateTime());
-    linha.txtValor.setText(coin.getValue().toString());
+    linha.txtValor.setText(coin.getValueBid().toString());
+    linha.txtSimbolo.setText(coin.getSymbol());
     /*linha.imgLogo.setOnClickListener(this);*/
     //linha.imgSalvar.setOnClickListener(this);
     /*linha.imgLogo.setTag(position);*/
