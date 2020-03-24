@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,10 +29,12 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
   Context context;
   public ArrayList<Coin> coinArrayList;
 
-  public GetOnlineQuotations(ArrayList<Coin> coinList, Context context) {
+  //public GetOnlineQuotations(ArrayList<Coin> coinList, Context context) {
+  //public GetOnlineQuotations(ArrayList<Coin> coinList) {
+  public GetOnlineQuotations() {
     this.builder = new Uri.Builder();
     this.context = context;
-    this.coinArrayList = coinList;
+    //this.coinArrayList = coinList;
     //builder.appendQueryParameter("app", "MediaEscolarV1");
   }
 
@@ -103,6 +104,7 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
           result.append(line);
         }
         Log.i("WebService", "Atualizadas cotações com sucesso.");
+        extractJson(result.toString());
         return result.toString();
 
       } else {
@@ -121,78 +123,53 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
 
   @Override
   protected void onPostExecute(String result) {
-    ArrayList<Coin> listCoins = new ArrayList<>();
-
-    try {
-      JSONArray jsonArray = new JSONArray(result);
-
-      if (jsonArray.length() > 0) {
-        // salvar os dados no DB SQLite
-        //mediaEscolarController.deletarTabela(MediaEscolarDataModel.getTABELA());
-        //mediaEscolarController.criarTabela(MediaEscolarDataModel.criarTabela());
-        Coin obj;
-        JSONObject jsonObject;
-
-        /*for (int i = 0; i < jsonArray.length(); i++) {
-          jsonObject = jsonArray.getJSONObject(i);
-          obj = extractCoin(jsonObject, jsonObject.getString("code"));
-          listCoins.add(obj);
-        }*/
-
-      } else {
-        Utility.showMessage(context, "Nenhuma dado recebido...");
-      }
-
-    } catch (JSONException e) {
-      Log.e("WebService", "JSONException - " + e.getMessage());
-
-    } finally {
-
-      /*if (progressDialog != null && progressDialog.isShowing()) {
-        progressDialog.dismiss();
-      }*/
-    }
-    //return listCoins;
-    this.coinArrayList = listCoins;
   }
 
-  private Coin extractCoin(JSONObject jsonObject, String code) {
-    Coin coin = new Coin();
+  private void extractJson(String result) {
+    //ArrayList<Coin> listCoins = new ArrayList<>();
+    Coin coin;
 
     try {
-      //JSONObject jsonObject = new JSONObject(result);
-      JSONArray jsonArray = jsonObject.getJSONArray(code);
+      JSONObject objJson = new JSONObject(result);
 
-      if (jsonArray.length() > 0) {
-        // salvar os dados no DB SQLite
-        //mediaEscolarController.deletarTabela(MediaEscolarDataModel.getTABELA());
-        //mediaEscolarController.criarTabela(MediaEscolarDataModel.criarTabela());
+      JSONObject jsonArrayUSD = objJson.getJSONObject("USD");
+      coin = new Coin();
+      coin.setCode(jsonArrayUSD.getString("code"));
+      coin.setTitle(jsonArrayUSD.getString("name"));
+      coin.setSymbol(Utility.getSymbol(jsonArrayUSD.getString("code")));
+      coin.setValueBid(BigDecimal.valueOf(jsonArrayUSD.getDouble("bid")));
+      coin.setValueAsk(BigDecimal.valueOf(jsonArrayUSD.getDouble("ask")));
+      coin.setDateTime(jsonArrayUSD.getString("create_date"));
+      this.coinArrayList.add(coin);
 
-        for (int i = 0; i < jsonArray.length(); i++) {
-          jsonObject = jsonArray.getJSONObject(i);
-          Coin obj = new Coin();
-          //obj.setId(jsonObject.getInt(MediaEscolarDataModel.getId()));
-          obj.setCode(jsonObject.getString("code"));
-          obj.setTitle(jsonObject.getString("name"));
-          obj.setSymbol(Utility.getSymbol(jsonObject.getString("code")));
-          obj.setValueBid(BigDecimal.valueOf(jsonObject.getDouble("bid")));
-          obj.setValueAsk(BigDecimal.valueOf(jsonObject.getDouble("ask")));
-          //mediaEscolarController.incluir(obj);
-          coin = obj;
-        }
-      } else {
-        Utility.showMessage(context, "Nenhuma dado recebido...");
-      }
+      JSONObject jsonArrayEUR = objJson.getJSONObject("EUR");
+      coin = new Coin();
+      coin.setCode(jsonArrayEUR.getString("code"));
+      coin.setTitle(jsonArrayEUR.getString("name"));
+      coin.setSymbol(Utility.getSymbol(jsonArrayEUR.getString("code")));
+      coin.setValueBid(BigDecimal.valueOf(jsonArrayEUR.getDouble("bid")));
+      coin.setValueAsk(BigDecimal.valueOf(jsonArrayEUR.getDouble("ask")));
+      coin.setDateTime(jsonArrayEUR.getString("create_date"));
+      this.coinArrayList.add(coin);
+
+      JSONObject jsonArrayBTC = objJson.getJSONObject("BTC");
+      coin = new Coin();
+      coin.setCode(jsonArrayBTC.getString("code"));
+      coin.setTitle(jsonArrayBTC.getString("name"));
+      coin.setSymbol(Utility.getSymbol(jsonArrayBTC.getString("code")));
+      coin.setValueBid(BigDecimal.valueOf(jsonArrayBTC.getDouble("bid")));
+      coin.setValueAsk(BigDecimal.valueOf(jsonArrayBTC.getDouble("ask")));
+      coin.setDateTime(jsonArrayBTC.getString("create_date"));
+      this.coinArrayList.add(coin);
 
     } catch (JSONException e) {
       Log.e("WebService", "JSONException - " + e.getMessage());
 
     } finally {
-
       /*if (progressDialog != null && progressDialog.isShowing()) {
         progressDialog.dismiss();
       }*/
     }
-    return coin;
+    //this.coinArrayList = listCoins;
   }
 }

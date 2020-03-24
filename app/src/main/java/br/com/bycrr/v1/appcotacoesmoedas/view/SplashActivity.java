@@ -13,7 +13,7 @@ import br.com.bycrr.v1.appcotacoesmoedas.R;
  */
 public class SplashActivity extends AppCompatActivity {
 
-  private static final int SPLASH_TIME_OUT = 5000;
+  private static final int SPLASH_TIME_OUT = 1000;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

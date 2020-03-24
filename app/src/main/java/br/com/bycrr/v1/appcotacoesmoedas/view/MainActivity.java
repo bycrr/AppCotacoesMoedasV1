@@ -20,20 +20,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
-
 import br.com.bycrr.v1.appcotacoesmoedas.R;
-import br.com.bycrr.v1.appcotacoesmoedas.model.Coin;
 import br.com.bycrr.v1.appcotacoesmoedas.ui.coins.CoinsFragment;
 import br.com.bycrr.v1.appcotacoesmoedas.ui.config.ConfigFragment;
 import br.com.bycrr.v1.appcotacoesmoedas.ui.quotation.QuotationFragment;
-import br.com.bycrr.v1.appcotacoesmoedas.util.GetOnlineQuotations;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
   private AppBarConfiguration mAppBarConfiguration;
   FragmentManager fragmentManager;
-  ArrayList<Coin> coinArrayList;
+  /*ArrayList<Coin> coinArrayList;
+  ListCoin listCoin;*/
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +55,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     navigationView = findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
     fragmentManager = getSupportFragmentManager();
-
-    GetOnlineQuotations task = new GetOnlineQuotations(coinArrayList, getBaseContext());
+    /*this.coinArrayList = new ArrayList<>();
+    //GetOnlineQuotations task = new GetOnlineQuotations(coinArrayList, getApplicationContext());
+    GetOnlineQuotations task = new GetOnlineQuotations(this.coinArrayList);
     task.execute();
-    this.coinArrayList = task.coinArrayList;
+    listCoin.setCoinArrayList(coinArrayList);
+    //this.coinArrayList = task.coinArrayList;*/
   }
 
   @Override
@@ -103,7 +102,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     } else if (id == R.id.nav_quotation) {
       setTitle("Quotações");
-      fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new QuotationFragment(this.coinArrayList)).commit();
+      //fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new QuotationFragment(this.coinArrayList)).commit();
+      fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new QuotationFragment()).commit();
 
     } else if (id == R.id.nav_share) {
     }
