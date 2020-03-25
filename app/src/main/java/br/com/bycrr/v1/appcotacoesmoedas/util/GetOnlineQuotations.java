@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
 import br.com.bycrr.v1.appcotacoesmoedas.model.Coin;
 
@@ -27,14 +26,12 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
   URL url = null;
   Uri.Builder builder;
   Context context;
-  public ArrayList<Coin> coinArrayList;
 
   //public GetOnlineQuotations(ArrayList<Coin> coinList, Context context) {
   //public GetOnlineQuotations(ArrayList<Coin> coinList) {
-  public GetOnlineQuotations() {
+  public GetOnlineQuotations(Context context) {
     this.builder = new Uri.Builder();
     this.context = context;
-    //this.coinArrayList = coinList;
     //builder.appendQueryParameter("app", "MediaEscolarV1");
   }
 
@@ -128,6 +125,7 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
   private void extractJson(String result) {
     //ArrayList<Coin> listCoins = new ArrayList<>();
     Coin coin;
+    SharedPrefManager sharedPrefManager = new SharedPrefManager();
 
     try {
       JSONObject objJson = new JSONObject(result);
@@ -140,7 +138,7 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
       coin.setValueBid(BigDecimal.valueOf(jsonArrayUSD.getDouble("bid")));
       coin.setValueAsk(BigDecimal.valueOf(jsonArrayUSD.getDouble("ask")));
       coin.setDateTime(jsonArrayUSD.getString("create_date"));
-      this.coinArrayList.add(coin);
+      sharedPrefManager.saveSharedPreferences(coin, context);
 
       JSONObject jsonArrayEUR = objJson.getJSONObject("EUR");
       coin = new Coin();
@@ -150,7 +148,7 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
       coin.setValueBid(BigDecimal.valueOf(jsonArrayEUR.getDouble("bid")));
       coin.setValueAsk(BigDecimal.valueOf(jsonArrayEUR.getDouble("ask")));
       coin.setDateTime(jsonArrayEUR.getString("create_date"));
-      this.coinArrayList.add(coin);
+      sharedPrefManager.saveSharedPreferences(coin, context);
 
       JSONObject jsonArrayBTC = objJson.getJSONObject("BTC");
       coin = new Coin();
@@ -160,7 +158,7 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
       coin.setValueBid(BigDecimal.valueOf(jsonArrayBTC.getDouble("bid")));
       coin.setValueAsk(BigDecimal.valueOf(jsonArrayBTC.getDouble("ask")));
       coin.setDateTime(jsonArrayBTC.getString("create_date"));
-      this.coinArrayList.add(coin);
+      sharedPrefManager.saveSharedPreferences(coin, context);
 
     } catch (JSONException e) {
       Log.e("WebService", "JSONException - " + e.getMessage());
@@ -170,6 +168,5 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
         progressDialog.dismiss();
       }*/
     }
-    //this.coinArrayList = listCoins;
   }
 }

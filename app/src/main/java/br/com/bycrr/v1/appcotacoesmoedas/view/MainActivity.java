@@ -24,6 +24,7 @@ import br.com.bycrr.v1.appcotacoesmoedas.R;
 import br.com.bycrr.v1.appcotacoesmoedas.ui.coins.CoinsFragment;
 import br.com.bycrr.v1.appcotacoesmoedas.ui.config.ConfigFragment;
 import br.com.bycrr.v1.appcotacoesmoedas.ui.quotation.QuotationFragment;
+import br.com.bycrr.v1.appcotacoesmoedas.util.GetOnlineQuotations;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -56,11 +57,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     navigationView.setNavigationItemSelectedListener(this);
     fragmentManager = getSupportFragmentManager();
     /*this.coinArrayList = new ArrayList<>();
-    //GetOnlineQuotations task = new GetOnlineQuotations(coinArrayList, getApplicationContext());
-    GetOnlineQuotations task = new GetOnlineQuotations(this.coinArrayList);
-    task.execute();
+    GetOnlineQuotations task = new GetOnlineQuotations(coinArrayList, getApplicationContext());
     listCoin.setCoinArrayList(coinArrayList);
     //this.coinArrayList = task.coinArrayList;*/
+    GetOnlineQuotations task = new GetOnlineQuotations(getApplicationContext());
+    task.execute();
   }
 
   @Override

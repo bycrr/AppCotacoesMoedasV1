@@ -17,7 +17,7 @@ import java.util.Date;
 import br.com.bycrr.v1.appcotacoesmoedas.R;
 import br.com.bycrr.v1.appcotacoesmoedas.adapter.QuotationListAdapter;
 import br.com.bycrr.v1.appcotacoesmoedas.model.Coin;
-import br.com.bycrr.v1.appcotacoesmoedas.util.GetOnlineQuotations;
+import br.com.bycrr.v1.appcotacoesmoedas.util.SharedPrefManager;
 
 public class QuotationFragment extends Fragment {
 
@@ -26,19 +26,10 @@ public class QuotationFragment extends Fragment {
   //CoinController coinController;
   View view;
   ArrayList<Coin> coinArrayList;
-  //static ListCoin listcoin;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-  }
-
-  /*public QuotationFragment(ArrayList<Coin> coinList) {
-    this.coinArrayList = coinList;
-  }*/
-  public QuotationFragment() {
-    //coinArrayList = new ArrayList<>();
-    //listcoin = new ListCoin();
   }
 
   public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,17 +48,16 @@ public class QuotationFragment extends Fragment {
     listView = view.findViewById(R.id.listview);
     //datasetMediaEscolar = mediaEscolarController.getAllResultadoFinal();
 
-    //coinArrayList = mockFakeData();
+    //GetOnlineQuotations task = new GetOnlineQuotations();
+    //task.execute();
+    SharedPrefManager sharedPrefManager = new SharedPrefManager();
     coinArrayList = new ArrayList<>();
-    //GetOnlineQuotations task = new GetOnlineQuotations(coinArrayList, getContext());
-    //GetOnlineQuotations task = new GetOnlineQuotations(coinArrayList);
-    GetOnlineQuotations task = new GetOnlineQuotations();
-    task.coinArrayList = coinArrayList;
-    task.execute();
+    coinArrayList.add(sharedPrefManager.lerSharedPreferences("BTC", getContext()));
+    coinArrayList.add(sharedPrefManager.lerSharedPreferences("USD", getContext()));
+    coinArrayList.add(sharedPrefManager.lerSharedPreferences("EUR", getContext()));
 
     // TODO: mudar p/funcionar c/loader...  https://www.devmedia.com.br/consumindo-dados-de-um-web-service-com-android/33717
     // TODO: analisar estas soluções => https://pt.stackoverflow.com/questions/38170/como-obter-resultado-de-uma-tarefa-ass%C3%ADncrona-no-android
-    coinArrayList = task.coinArrayList;
     final QuotationListAdapter adapter = new QuotationListAdapter(coinArrayList, getContext());
     listView.setAdapter(adapter);
     return view;

@@ -3,7 +3,9 @@ package br.com.bycrr.v1.appcotacoesmoedas.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import br.com.bycrr.v1.appcotacoesmoedas.R;
 
 /**
