@@ -6,6 +6,7 @@ import android.widget.Toast;
 import java.net.HttpURLConnection;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -15,7 +16,8 @@ public class Utility {
   // informe o enderço IP se estiver rodando em seu computador
   // informe a URL se estiver rodando em uma hospedagem
   //public static final String URL_WEB_SERVICE = "http://192.168.1.141/mediaescolar/";
-  public static final String URL_WEB_SERVICE = "https://economia.awesomeapi.com.br";
+  public static final String URL_WEB_SERVICE = "https://economia.awesomeapi.com.br/all/";
+  public static final String MOEDAS = "USD-BRL,EUR-BRL,BTC-BRL,GBP-BRL";
 
   // tempo máximo p/considerar um TIMEOUT p/conectar ao apache (conectando)
   public static final int CONNECTION_TIMEOUT = 10000; // 10 segundos
@@ -32,15 +34,22 @@ public class Utility {
 
   public static String getSymbol(String code) {
     HashMap<String, String> symbols = new HashMap<>();
-    /*symbols.put("USD", "US$ ");
+    symbols.put("BTC", "BTC$ ");
+    symbols.put("USD", "US$ ");
     symbols.put("EUR", "EUR$ ");
+    symbols.put("GBP", "LS$ ");
     symbols.put("BRL", "R$ ");
-    symbols.put("BTC", "BTC$ ");*/
-    symbols.put("USD", "R$ ");
-    symbols.put("EUR", "R$ ");
-    symbols.put("BRL", "R$ ");
-    symbols.put("BTC", "R$ ");
     return symbols.get(code);
+  }
+
+  public static String getCode(int pos) {
+    ArrayList<String> listCodes = new ArrayList<>();
+    listCodes.add("BTC");
+    listCodes.add("USD");
+    listCodes.add("EUR");
+    listCodes.add("GBP");
+    listCodes.add("BRL");
+    return listCodes.get(pos);
   }
 
   public static void showMessage(Context context, String message) {

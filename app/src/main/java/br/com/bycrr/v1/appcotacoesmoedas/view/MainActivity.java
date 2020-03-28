@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new CoinsFragment()).commit();
 
     } else if (id == R.id.nav_quotation) {
-      setTitle("Quotações");
+      setTitle("Cotações");
       //fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new QuotationFragment(this.coinArrayList)).commit();
       fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new QuotationFragment()).commit();
 
@@ -111,5 +111,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawer = findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
     return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    int id = item.getItemId();
+
+    if (id == R.id.action_sair) {
+      finish();
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 }

@@ -52,7 +52,7 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
 
     // montar a URL com o endereço da API
     try {
-      url = new URL(Utility.URL_WEB_SERVICE + "/all/USD-BRL,EUR-BRL,BTC-BRL");
+      url = new URL(Utility.URL_WEB_SERVICE + Utility.MOEDAS);
 
     } catch (MalformedURLException e) {
       Log.e("WebService", "MalformedURLException - " + e.getMessage());
@@ -130,17 +130,19 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
     try {
       JSONObject objJson = new JSONObject(result);
 
-      JSONObject jsonArrayUSD = objJson.getJSONObject("USD");
-      coin = new Coin();
-      coin.setCode(jsonArrayUSD.getString("code"));
-      coin.setTitle(jsonArrayUSD.getString("name"));
-      coin.setSymbol(Utility.getSymbol(jsonArrayUSD.getString("code")));
-      coin.setValueBid(BigDecimal.valueOf(jsonArrayUSD.getDouble("bid")));
-      coin.setValueAsk(BigDecimal.valueOf(jsonArrayUSD.getDouble("ask")));
-      coin.setDateTime(jsonArrayUSD.getString("create_date"));
-      sharedPrefManager.saveSharedPreferences(coin, context);
+      for (int i = 0; i < 4; i++) {
+        JSONObject jsonArrayUSD = objJson.getJSONObject(Utility.getCode(i));
+        coin = new Coin();
+        coin.setCode(jsonArrayUSD.getString("code"));
+        coin.setTitle(jsonArrayUSD.getString("name"));
+        coin.setSymbol(Utility.getSymbol(jsonArrayUSD.getString("code")));
+        coin.setValueBid(BigDecimal.valueOf(jsonArrayUSD.getDouble("bid")));
+        coin.setValueAsk(BigDecimal.valueOf(jsonArrayUSD.getDouble("ask")));
+        coin.setDateTime(jsonArrayUSD.getString("create_date"));
+        sharedPrefManager.saveSharedPreferences(coin, context);
+      }
 
-      JSONObject jsonArrayEUR = objJson.getJSONObject("EUR");
+      /*JSONObject jsonArrayEUR = objJson.getJSONObject("EUR");
       coin = new Coin();
       coin.setCode(jsonArrayEUR.getString("code"));
       coin.setTitle(jsonArrayEUR.getString("name"));
@@ -158,7 +160,7 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
       coin.setValueBid(BigDecimal.valueOf(jsonArrayBTC.getDouble("bid")));
       coin.setValueAsk(BigDecimal.valueOf(jsonArrayBTC.getDouble("ask")));
       coin.setDateTime(jsonArrayBTC.getString("create_date"));
-      sharedPrefManager.saveSharedPreferences(coin, context);
+      sharedPrefManager.saveSharedPreferences(coin, context);*/
 
     } catch (JSONException e) {
       Log.e("WebService", "JSONException - " + e.getMessage());

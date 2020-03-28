@@ -89,11 +89,15 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
 
     } else if (coin.getCode().equals("EUR")) {
       icon = getContext().getResources().getDrawable(R.mipmap.ic_euro);
+
+    } else if (coin.getCode().equals("GBP")) {
+      icon = getContext().getResources().getDrawable(R.mipmap.ic_libra);
     }
     linha.txtTituloMoeda.setText(coin.getTitle());
     linha.txtDataHora.setText(coin.getDateTime());
     linha.txtValor.setText(Utility.formatValue(coin.getValueBid().doubleValue()));
-    linha.txtSimbolo.setText(coin.getSymbol());
+    //linha.txtSimbolo.setText(coin.getSymbol());
+    linha.txtSimbolo.setText("R$ ");
     //linha.imgLogo.setImageResource(icDollar);
     linha.imgLogo.setImageDrawable(icon);
     /*linha.imgLogo.setOnClickListener(this);*/

@@ -55,6 +55,7 @@ public class QuotationFragment extends Fragment {
     coinArrayList.add(sharedPrefManager.lerSharedPreferences("BTC", getContext()));
     coinArrayList.add(sharedPrefManager.lerSharedPreferences("USD", getContext()));
     coinArrayList.add(sharedPrefManager.lerSharedPreferences("EUR", getContext()));
+    coinArrayList.add(sharedPrefManager.lerSharedPreferences("GBP", getContext()));
 
     // TODO: mudar p/funcionar c/loader...  https://www.devmedia.com.br/consumindo-dados-de-um-web-service-com-android/33717
     // TODO: analisar estas soluções => https://pt.stackoverflow.com/questions/38170/como-obter-resultado-de-uma-tarefa-ass%C3%ADncrona-no-android
