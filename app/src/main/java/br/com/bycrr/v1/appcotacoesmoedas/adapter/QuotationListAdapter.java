@@ -2,10 +2,12 @@ package br.com.bycrr.v1.appcotacoesmoedas.adapter;
 
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 
 import br.com.bycrr.v1.appcotacoesmoedas.R;
 import br.com.bycrr.v1.appcotacoesmoedas.model.Coin;
+import br.com.bycrr.v1.appcotacoesmoedas.util.Utility;
 
 public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnClickListener {
 
@@ -27,6 +30,8 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
     TextView txtDataHora;
     TextView txtValor;
     TextView txtSimbolo;
+    ImageView imgLogo;
+
     /*ImageView imgLogo;
     ImageView imgConsultar;
     ImageView imgEditar;
@@ -61,6 +66,7 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
   public View getView(int position, View linhaDataSet, @NonNull ViewGroup parent) {
     coin = getItem(position);
     //ViewHolder linha;
+    Drawable icon = getContext().getResources().getDrawable(R.mipmap.ic_launcher);  // bitcoin
 
     if (linhaDataSet == null) {
       linha = new ViewHolder();
@@ -70,6 +76,7 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
       linha.txtDataHora = linhaDataSet.findViewById(R.id.txtDataHora);
       linha.txtValor = linhaDataSet.findViewById(R.id.txtValor);
       linha.txtSimbolo = linhaDataSet.findViewById(R.id.txtSimbolo);
+      linha.imgLogo = linhaDataSet.findViewById(R.id.imgLogo);
       /*linha.imgLogo = linhaDataSet.findViewById(R.id.imgLogo);*/
       //linha.imgSalvar = linhaDataSet.findViewById(R.id.imgSalvar);
       linhaDataSet.setTag(linha);
@@ -77,10 +84,18 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
     } else {
       linha = (ViewHolder) linhaDataSet.getTag();
     }
+    if (coin.getCode().equals("USD")) {
+      icon = getContext().getResources().getDrawable(R.mipmap.ic_dollar);
+
+    } else if (coin.getCode().equals("EUR")) {
+      icon = getContext().getResources().getDrawable(R.mipmap.ic_euro);
+    }
     linha.txtTituloMoeda.setText(coin.getTitle());
     linha.txtDataHora.setText(coin.getDateTime());
-    linha.txtValor.setText(coin.getValueBid().toString());
+    linha.txtValor.setText(Utility.formatValue(coin.getValueBid().doubleValue()));
     linha.txtSimbolo.setText(coin.getSymbol());
+    //linha.imgLogo.setImageResource(icDollar);
+    linha.imgLogo.setImageDrawable(icon);
     /*linha.imgLogo.setOnClickListener(this);*/
     //linha.imgSalvar.setOnClickListener(this);
     /*linha.imgLogo.setTag(position);*/

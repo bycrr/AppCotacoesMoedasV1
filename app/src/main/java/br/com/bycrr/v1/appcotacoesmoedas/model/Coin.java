@@ -9,6 +9,7 @@ public class Coin {
   private String dateTime;      // create_date
   private BigDecimal valueBid;  // compra
   private BigDecimal valueAsk;  // venda
+  private String image;         // icon
 
   public String getTitle() {
     return title;
@@ -56,5 +57,13 @@ public class Coin {
 
   public void setValueAsk(BigDecimal valueAsk) {
     this.valueAsk = valueAsk;
+  }
+
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
   }
 }

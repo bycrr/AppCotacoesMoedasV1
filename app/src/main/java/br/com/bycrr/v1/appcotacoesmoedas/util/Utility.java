@@ -3,11 +3,11 @@ package br.com.bycrr.v1.appcotacoesmoedas.util;
 import android.content.Context;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.net.HttpURLConnection;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class Utility {
 
@@ -26,16 +26,20 @@ public class Utility {
   private static HttpURLConnection connection;
 
   public static String formatValue(Double valor) {
-    DecimalFormat df = new DecimalFormat("#,###,##0.00");
+    DecimalFormat df = new DecimalFormat("#,###,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
     return df.format(valor);
   }
 
   public static String getSymbol(String code) {
     HashMap<String, String> symbols = new HashMap<>();
-    symbols.put("USD", "US$ ");
-    symbols.put("EUR", "E$ ");
+    /*symbols.put("USD", "US$ ");
+    symbols.put("EUR", "EUR$ ");
     symbols.put("BRL", "R$ ");
-    symbols.put("BTC", "B$ ");
+    symbols.put("BTC", "BTC$ ");*/
+    symbols.put("USD", "R$ ");
+    symbols.put("EUR", "R$ ");
+    symbols.put("BRL", "R$ ");
+    symbols.put("BTC", "R$ ");
     return symbols.get(code);
   }
 
