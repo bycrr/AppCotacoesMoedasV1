@@ -100,7 +100,7 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
         while ((line = bufferedReader.readLine()) != null) {
           result.append(line);
         }
-        Log.i("WebService", "Atualizadas cotações com sucesso.");
+        Log.i("WebService", "Atualizadas cotações com sucesso");
         extractJson(result.toString());
         return result.toString();
 
@@ -120,6 +120,8 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
 
   @Override
   protected void onPostExecute(String result) {
+    if (result != null)
+      Utility.showMessage(context, "Atualizadas cotações com sucesso");
   }
 
   private void extractJson(String result) {
@@ -131,14 +133,14 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
       JSONObject objJson = new JSONObject(result);
 
       for (int i = 0; i < 4; i++) {
-        JSONObject jsonArrayUSD = objJson.getJSONObject(Utility.getCode(i));
+        JSONObject jsonArrayCoin = objJson.getJSONObject(Utility.getCode(i));
         coin = new Coin();
-        coin.setCode(jsonArrayUSD.getString("code"));
-        coin.setTitle(jsonArrayUSD.getString("name"));
-        coin.setSymbol(Utility.getSymbol(jsonArrayUSD.getString("code")));
-        coin.setValueBid(BigDecimal.valueOf(jsonArrayUSD.getDouble("bid")));
-        coin.setValueAsk(BigDecimal.valueOf(jsonArrayUSD.getDouble("ask")));
-        coin.setDateTime(jsonArrayUSD.getString("create_date"));
+        coin.setCode(jsonArrayCoin.getString("code"));
+        coin.setTitle(jsonArrayCoin.getString("name"));
+        coin.setSymbol(Utility.getSymbol(jsonArrayCoin.getString("code")));
+        coin.setValueBid(BigDecimal.valueOf(jsonArrayCoin.getDouble("bid")));
+        coin.setValueAsk(BigDecimal.valueOf(jsonArrayCoin.getDouble("ask")));
+        coin.setDateTime(jsonArrayCoin.getString("create_date"));
         sharedPrefManager.saveSharedPreferences(coin, context);
       }
 

@@ -18,6 +18,7 @@ public class Utility {
   //public static final String URL_WEB_SERVICE = "http://192.168.1.141/mediaescolar/";
   public static final String URL_WEB_SERVICE = "https://economia.awesomeapi.com.br/all/";
   public static final String MOEDAS = "USD-BRL,EUR-BRL,BTC-BRL,GBP-BRL";
+  private static ArrayList<String> listCodes = new ArrayList<>();
 
   // tempo máximo p/considerar um TIMEOUT p/conectar ao apache (conectando)
   public static final int CONNECTION_TIMEOUT = 10000; // 10 segundos
@@ -32,6 +33,10 @@ public class Utility {
     return df.format(valor);
   }
 
+  public static void setCode(String code) {
+    Utility.listCodes.add(code);
+  }
+
   public static String getSymbol(String code) {
     HashMap<String, String> symbols = new HashMap<>();
     symbols.put("BTC", "BTC$ ");
@@ -43,7 +48,6 @@ public class Utility {
   }
 
   public static String getCode(int pos) {
-    ArrayList<String> listCodes = new ArrayList<>();
     listCodes.add("BTC");
     listCodes.add("USD");
     listCodes.add("EUR");
