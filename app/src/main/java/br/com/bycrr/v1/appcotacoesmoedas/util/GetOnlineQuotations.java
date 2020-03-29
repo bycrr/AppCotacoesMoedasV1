@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 import br.com.bycrr.v1.appcotacoesmoedas.model.Coin;
 
@@ -26,6 +27,8 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
   URL url = null;
   Uri.Builder builder;
   Context context;
+  SharedPrefManager sharedPrefManager = new SharedPrefManager();
+  String urlCoins;
 
   //public GetOnlineQuotations(ArrayList<Coin> coinList, Context context) {
   //public GetOnlineQuotations(ArrayList<Coin> coinList) {
@@ -46,13 +49,14 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
   @Override
   protected String doInBackground(String... strings) {
 
-    //public static ArrayList<Coin> getOnlineQuotations(Context context) {
-    //URL url = null;
-    //Uri.Builder builder = new Uri.Builder();
-
     // montar a URL com o endereço da API
     try {
-      url = new URL(Utility.URL_WEB_SERVICE + Utility.MOEDAS);
+      urlCoins = sharedPrefManager.readUrlCoins(context);
+      if (urlCoins == null) {
+        urlCoins = Utility.URL_COINS;
+        sharedPrefManager.saveUrlCoins(urlCoins, context);
+      }
+      url = new URL(Utility.URL_WEB_SERVICE + urlCoins);
 
     } catch (MalformedURLException e) {
       Log.e("WebService", "MalformedURLException - " + e.getMessage());
@@ -66,18 +70,7 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
       connection.setConnectTimeout(Utility.CONNECTION_TIMEOUT);
       connection.setReadTimeout(Utility.READ_TIMEOUT);
       connection.setRequestMethod("GET");
-      //connection.setRequestProperty("charset", "utf-8");
       connection.setRequestProperty("Accept-Charset", "UTF-8");
-      /*connection.setDoInput(true);
-      connection.setDoOutput(true);*/
-      /*connection.connect();
-      String query = builder.build().getEncodedQuery();
-      OutputStream outputStream = connection.getOutputStream();
-      BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "utf-8"));
-      bufferedWriter.write(query);
-      bufferedWriter.flush();
-      bufferedWriter.close();
-      outputStream.close();*/
       connection.connect();
 
     } catch (IOException e) {
@@ -115,7 +108,6 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
     } finally {
       connection.disconnect();
     }
-    //return null;
   }
 
   @Override
@@ -125,15 +117,14 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
   }
 
   private void extractJson(String result) {
-    //ArrayList<Coin> listCoins = new ArrayList<>();
     Coin coin;
-    SharedPrefManager sharedPrefManager = new SharedPrefManager();
 
     try {
       JSONObject objJson = new JSONObject(result);
+      List<String> codeList = Utility.getCodeList(urlCoins);
 
-      for (int i = 0; i < 4; i++) {
-        JSONObject jsonArrayCoin = objJson.getJSONObject(Utility.getCode(i));
+      for (String code: codeList) {
+        JSONObject jsonArrayCoin = objJson.getJSONObject(code.substring(0,3));
         coin = new Coin();
         coin.setCode(jsonArrayCoin.getString("code"));
         coin.setTitle(jsonArrayCoin.getString("name"));
@@ -141,28 +132,8 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
         coin.setValueBid(BigDecimal.valueOf(jsonArrayCoin.getDouble("bid")));
         coin.setValueAsk(BigDecimal.valueOf(jsonArrayCoin.getDouble("ask")));
         coin.setDateTime(jsonArrayCoin.getString("create_date"));
-        sharedPrefManager.saveSharedPreferences(coin, context);
+        sharedPrefManager.saveCoin(coin, context);
       }
-
-      /*JSONObject jsonArrayEUR = objJson.getJSONObject("EUR");
-      coin = new Coin();
-      coin.setCode(jsonArrayEUR.getString("code"));
-      coin.setTitle(jsonArrayEUR.getString("name"));
-      coin.setSymbol(Utility.getSymbol(jsonArrayEUR.getString("code")));
-      coin.setValueBid(BigDecimal.valueOf(jsonArrayEUR.getDouble("bid")));
-      coin.setValueAsk(BigDecimal.valueOf(jsonArrayEUR.getDouble("ask")));
-      coin.setDateTime(jsonArrayEUR.getString("create_date"));
-      sharedPrefManager.saveSharedPreferences(coin, context);
-
-      JSONObject jsonArrayBTC = objJson.getJSONObject("BTC");
-      coin = new Coin();
-      coin.setCode(jsonArrayBTC.getString("code"));
-      coin.setTitle(jsonArrayBTC.getString("name"));
-      coin.setSymbol(Utility.getSymbol(jsonArrayBTC.getString("code")));
-      coin.setValueBid(BigDecimal.valueOf(jsonArrayBTC.getDouble("bid")));
-      coin.setValueAsk(BigDecimal.valueOf(jsonArrayBTC.getDouble("ask")));
-      coin.setDateTime(jsonArrayBTC.getString("create_date"));
-      sharedPrefManager.saveSharedPreferences(coin, context);*/
 
     } catch (JSONException e) {
       Log.e("WebService", "JSONException - " + e.getMessage());

@@ -10,12 +10,20 @@ public class SharedPrefManager {
 
   private static final String SHARED_PREFER_NAME = "AppCotacoesMoedas";
 
-  public void saveSharedPreferences(Coin coin, Context context) {
+  public void saveUrlCoins(String urlCoins, Context context) {
     android.content.SharedPreferences appCotacoesMoedasPref = context.getSharedPreferences(this.SHARED_PREFER_NAME, Context.MODE_PRIVATE);
-    //SharedPreferences appCotacoesMoedasPref = PreferenceManager.getDefaultSharedPreferences(this);
-    //SharedPreferences sharedPref = getSharedPreferences("patientId", Context.MODE_PRIVATE);
-    //SharedPreferences prefs = android.preference.PreferenceManager.getDefaultSharedPreferences(this);
+    android.content.SharedPreferences.Editor editor = appCotacoesMoedasPref.edit();
+    editor.putString("urlCoins", urlCoins);
+    editor.commit();
+  }
 
+  public String readUrlCoins(Context context)  {
+    android.content.SharedPreferences appCotacoesMoedasPref = context.getSharedPreferences(this.SHARED_PREFER_NAME, Context.MODE_PRIVATE);
+    return appCotacoesMoedasPref.getString("urlCoins", null);
+  }
+
+  public void saveCoin(Coin coin, Context context) {
+    android.content.SharedPreferences appCotacoesMoedasPref = context.getSharedPreferences(this.SHARED_PREFER_NAME, Context.MODE_PRIVATE);
     android.content.SharedPreferences.Editor editor = appCotacoesMoedasPref.edit();
     editor.putString("code" + coin.getCode(), coin.getCode());
     editor.putString("title" + coin.getCode(), coin.getTitle());
@@ -24,12 +32,10 @@ public class SharedPrefManager {
     editor.putFloat("valueAsk" + coin.getCode(), coin.getValueAsk().floatValue());
     editor.putString("dateTime" + coin.getCode(), coin.getDateTime());
     editor.commit();
-
   }
 
-  public Coin lerSharedPreferences(String code, Context context)  {
+  public Coin readCoin(String code, Context context)  {
     android.content.SharedPreferences appCotacoesMoedasPref = context.getSharedPreferences(this.SHARED_PREFER_NAME, Context.MODE_PRIVATE);
-    //SharedPreferences appCotacoesMoedasPref = PreferenceManager.getDefaultSharedPreferences(this);
     Coin coin = new Coin();
     coin.setCode(appCotacoesMoedasPref.getString("code" + code, "erro"));
     coin.setTitle(appCotacoesMoedasPref.getString("title" + code, " "));
@@ -42,7 +48,6 @@ public class SharedPrefManager {
 
   public void clearSharedPreferences(Context context) {
     android.content.SharedPreferences appCotacoesMoedasPref = context.getSharedPreferences(this.SHARED_PREFER_NAME, Context.MODE_PRIVATE);
-    //SharedPreferences appCotacoesMoedasPref = PreferenceManager.getDefaultSharedPreferences(this);
     android.content.SharedPreferences.Editor editor = appCotacoesMoedasPref.edit();
     editor.clear();
     editor.commit();

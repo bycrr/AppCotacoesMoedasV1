@@ -6,9 +6,11 @@ import android.widget.Toast;
 import java.net.HttpURLConnection;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class Utility {
 
@@ -17,8 +19,8 @@ public class Utility {
   // informe a URL se estiver rodando em uma hospedagem
   //public static final String URL_WEB_SERVICE = "http://192.168.1.141/mediaescolar/";
   public static final String URL_WEB_SERVICE = "https://economia.awesomeapi.com.br/all/";
-  public static final String MOEDAS = "USD-BRL,EUR-BRL,BTC-BRL,GBP-BRL";
-  private static ArrayList<String> listCodes = new ArrayList<>();
+  public static final String URL_COINS = "BTC-BRL,USD-BRL,EUR-BRL,GBP-BRL";
+  //public static final String URL_COINS = "BTC-BRL";
 
   // tempo máximo p/considerar um TIMEOUT p/conectar ao apache (conectando)
   public static final int CONNECTION_TIMEOUT = 10000; // 10 segundos
@@ -33,10 +35,6 @@ public class Utility {
     return df.format(valor);
   }
 
-  public static void setCode(String code) {
-    Utility.listCodes.add(code);
-  }
-
   public static String getSymbol(String code) {
     HashMap<String, String> symbols = new HashMap<>();
     symbols.put("BTC", "BTC$ ");
@@ -47,16 +45,27 @@ public class Utility {
     return symbols.get(code);
   }
 
-  public static String getCode(int pos) {
-    listCodes.add("BTC");
-    listCodes.add("USD");
-    listCodes.add("EUR");
-    listCodes.add("GBP");
-    listCodes.add("BRL");
-    return listCodes.get(pos);
-  }
-
   public static void showMessage(Context context, String message) {
     Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+  }
+
+  public static String addCodeUrlCoins(String code, String urlCoins) {
+    urlCoins = urlCoins.concat("," + code + "-BRL");
+    if (urlCoins.charAt(1) == ',') urlCoins = urlCoins.substring(2);
+    if (urlCoins.charAt(urlCoins.length()) == ',') urlCoins = urlCoins.substring(1,urlCoins.length()-1);
+    return urlCoins;
+  }
+
+  public static String delCodeUrlCoins(String code, String urlCoins) {
+    urlCoins = urlCoins.replace(code + "-BRL", "");
+    if (urlCoins.charAt(1) == ',') urlCoins = urlCoins.substring(2);
+    if (urlCoins.charAt(urlCoins.length()) == ',') urlCoins = urlCoins.substring(1,urlCoins.length()-1);
+    return urlCoins;
+  }
+
+  public static List<String> getCodeList(String urlCoins) {
+    //ArrayList<String> arrayList = new ArrayList<>();
+    List<String> list = Arrays.asList(urlCoins.split(Pattern.quote(",")));
+    return list;
   }
 }

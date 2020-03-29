@@ -13,11 +13,13 @@ import androidx.lifecycle.ViewModelProviders;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import br.com.bycrr.v1.appcotacoesmoedas.R;
 import br.com.bycrr.v1.appcotacoesmoedas.adapter.QuotationListAdapter;
 import br.com.bycrr.v1.appcotacoesmoedas.model.Coin;
 import br.com.bycrr.v1.appcotacoesmoedas.util.SharedPrefManager;
+import br.com.bycrr.v1.appcotacoesmoedas.util.Utility;
 
 public class QuotationFragment extends Fragment {
 
@@ -26,6 +28,8 @@ public class QuotationFragment extends Fragment {
   //CoinController coinController;
   View view;
   ArrayList<Coin> coinArrayList;
+  SharedPrefManager sharedPrefManager;
+  String urlCoins;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -37,25 +41,18 @@ public class QuotationFragment extends Fragment {
     quotationViewModel =
       ViewModelProviders.of(this).get(QuotationViewModel.class);
     view = inflater.inflate(R.layout.fragment_quotation, container, false);
-        /*final TextView textView = root.findViewById(R.id.text_slideshow);
-        quotationViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
-    //coinController = new CoinController(getContext());
     listView = view.findViewById(R.id.listview);
-    //datasetMediaEscolar = mediaEscolarController.getAllResultadoFinal();
-
     //GetOnlineQuotations task = new GetOnlineQuotations();
     //task.execute();
-    SharedPrefManager sharedPrefManager = new SharedPrefManager();
+    sharedPrefManager = new SharedPrefManager();
     coinArrayList = new ArrayList<>();
-    coinArrayList.add(sharedPrefManager.lerSharedPreferences("BTC", getContext()));
-    coinArrayList.add(sharedPrefManager.lerSharedPreferences("USD", getContext()));
-    coinArrayList.add(sharedPrefManager.lerSharedPreferences("EUR", getContext()));
-    coinArrayList.add(sharedPrefManager.lerSharedPreferences("GBP", getContext()));
+    urlCoins = sharedPrefManager.readUrlCoins(getContext());
+    if (urlCoins == null) urlCoins = Utility.URL_COINS;
+    List<String> codeList = Utility.getCodeList(urlCoins);
+
+    for (String code: codeList) {
+      coinArrayList.add(sharedPrefManager.readCoin(code.substring(0,3), getContext()));
+    }
 
     // TODO: mudar p/funcionar c/loader...  https://www.devmedia.com.br/consumindo-dados-de-um-web-service-com-android/33717
     // TODO: analisar estas soluções => https://pt.stackoverflow.com/questions/38170/como-obter-resultado-de-uma-tarefa-ass%C3%ADncrona-no-android

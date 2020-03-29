@@ -25,6 +25,7 @@ import br.com.bycrr.v1.appcotacoesmoedas.ui.coins.CoinsFragment;
 import br.com.bycrr.v1.appcotacoesmoedas.ui.config.ConfigFragment;
 import br.com.bycrr.v1.appcotacoesmoedas.ui.quotation.QuotationFragment;
 import br.com.bycrr.v1.appcotacoesmoedas.util.GetOnlineQuotations;
+import br.com.bycrr.v1.appcotacoesmoedas.util.SharedPrefManager;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
