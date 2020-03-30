@@ -51,15 +51,15 @@ public class Utility {
 
   public static String addCodeUrlCoins(String code, String urlCoins) {
     urlCoins = urlCoins.concat("," + code + "-BRL");
-    if (urlCoins.charAt(1) == ',') urlCoins = urlCoins.substring(2);
-    if (urlCoins.charAt(urlCoins.length()) == ',') urlCoins = urlCoins.substring(1,urlCoins.length()-1);
+    if (urlCoins.charAt(0) == ',') urlCoins = urlCoins.substring(1);
+    if (urlCoins.charAt(urlCoins.length()-1) == ',') urlCoins = urlCoins.substring(0,urlCoins.length()-1);
     return urlCoins;
   }
 
   public static String delCodeUrlCoins(String code, String urlCoins) {
     urlCoins = urlCoins.replace(code + "-BRL", "");
-    if (urlCoins.charAt(1) == ',') urlCoins = urlCoins.substring(2);
-    if (urlCoins.charAt(urlCoins.length()) == ',') urlCoins = urlCoins.substring(1,urlCoins.length()-1);
+    if (urlCoins.charAt(0) == ',') urlCoins = urlCoins.substring(1);
+    if (urlCoins.charAt(urlCoins.length()-1) == ',') urlCoins = urlCoins.substring(0,urlCoins.length()-1);
     return urlCoins;
   }
 

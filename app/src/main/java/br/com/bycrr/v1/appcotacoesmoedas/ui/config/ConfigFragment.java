@@ -16,20 +16,21 @@ import br.com.bycrr.v1.appcotacoesmoedas.R;
 
 public class ConfigFragment extends Fragment {
 
-    private ConfigViewModel configViewModel;
+  private ConfigViewModel configViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        configViewModel =
-                ViewModelProviders.of(this).get(ConfigViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_coins, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        configViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
-    }
+  public View onCreateView(@NonNull LayoutInflater inflater,
+                           ViewGroup container, Bundle savedInstanceState) {
+    configViewModel =
+      ViewModelProviders.of(this).get(ConfigViewModel.class);
+    View root = inflater.inflate(R.layout.fragment_config, container, false);
+    final TextView textView = root.findViewById(R.id.text_home);
+    configViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+      @Override
+      public void onChanged(@Nullable String s) {
+        textView.setText(s);
+      }
+    });
+    return root;
+  }
 }
+

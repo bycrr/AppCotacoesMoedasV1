@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import br.com.bycrr.v1.appcotacoesmoedas.ui.config.ConfigFragment;
 import br.com.bycrr.v1.appcotacoesmoedas.ui.quotation.QuotationFragment;
 import br.com.bycrr.v1.appcotacoesmoedas.util.GetOnlineQuotations;
 import br.com.bycrr.v1.appcotacoesmoedas.util.SharedPrefManager;
+import br.com.bycrr.v1.appcotacoesmoedas.util.Utility;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
   FragmentManager fragmentManager;
   /*ArrayList<Coin> coinArrayList;
   ListCoin listCoin;*/
+  SharedPrefManager sharedPrefManager;
+  String urlCoins;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -124,4 +128,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     return super.onOptionsItemSelected(item);
   }
+
+  public void onCheckboxClicked(View view) {
+    // Is the view now checked?
+    boolean checked = ((CheckBox) view).isChecked();
+    sharedPrefManager = new SharedPrefManager();
+    urlCoins = sharedPrefManager.readUrlCoins(getApplicationContext());
+    String code = null;
+
+    // Check which checkbox was clicked
+    switch (view.getId()) {
+
+      case R.id.checkbox_btc:
+        code = "BTC";
+        break;
+
+      case R.id.checkbox_usd:
+        code = "USD";
+        break;
+
+      case R.id.checkbox_eur:
+        code = "EUR";
+        break;
+
+      case R.id.checkbox_gbp:
+        code = "GBP";
+        break;
+    }
+    if (code != null) {
+
+      if (checked) {
+        urlCoins = Utility.addCodeUrlCoins(code, urlCoins);
+
+      } else {
+        urlCoins = Utility.delCodeUrlCoins(code, urlCoins);
+      }
+    }
+    sharedPrefManager.saveUrlCoins(urlCoins, getApplicationContext());
+  }
+
 }

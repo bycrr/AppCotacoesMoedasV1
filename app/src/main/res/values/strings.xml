@@ -18,4 +18,8 @@
     <string name="txtDataHora">Data e Hora</string>
   <string name="txtValor">Valor</string>
   <string name="txtAuthor">ByCRR 2020</string>
+    <string name="txtMoedaUSD">USD - Dólar Comercial</string>
+  <string name="txtMoedaEUR">EUR - Euro</string>
+  <string name="txtMoedaBTC">BTC - Bitcon</string>
+  <string name="txtMoedaGBP">GBP - Libra Esterlina</string>
 </resources>

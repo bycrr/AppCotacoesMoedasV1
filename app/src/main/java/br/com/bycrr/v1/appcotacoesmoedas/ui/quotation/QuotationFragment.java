@@ -51,7 +51,9 @@ public class QuotationFragment extends Fragment {
     List<String> codeList = Utility.getCodeList(urlCoins);
 
     for (String code: codeList) {
-      coinArrayList.add(sharedPrefManager.readCoin(code.substring(0,3), getContext()));
+      if (!code.isEmpty()) {
+        coinArrayList.add(sharedPrefManager.readCoin(code.substring(0, 3), getContext()));
+      }
     }
 
     // TODO: mudar p/funcionar c/loader...  https://www.devmedia.com.br/consumindo-dados-de-um-web-service-com-android/33717
