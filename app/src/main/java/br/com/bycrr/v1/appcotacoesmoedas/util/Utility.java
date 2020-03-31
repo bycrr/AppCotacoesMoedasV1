@@ -64,7 +64,6 @@ public class Utility {
   }
 
   public static List<String> getCodeList(String urlCoins) {
-    //ArrayList<String> arrayList = new ArrayList<>();
     List<String> list = Arrays.asList(urlCoins.split(Pattern.quote(",")));
     return list;
   }

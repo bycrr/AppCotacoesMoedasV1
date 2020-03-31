@@ -31,12 +31,6 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
     TextView txtValor;
     TextView txtSimbolo;
     ImageView imgLogo;
-
-    /*ImageView imgLogo;
-    ImageView imgConsultar;
-    ImageView imgEditar;
-    ImageView imgDeletar;
-    ImageView imgSalvar;*/
   }
 
   public QuotationListAdapter(ArrayList<Coin> datasetCoin, Context context) {
@@ -65,7 +59,6 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
   @Override
   public View getView(int position, View linhaDataSet, @NonNull ViewGroup parent) {
     coin = getItem(position);
-    //ViewHolder linha;
     Drawable icon = getContext().getResources().getDrawable(R.mipmap.ic_launcher);  // bitcoin
 
     if (linhaDataSet == null) {
@@ -77,8 +70,6 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
       linha.txtValor = linhaDataSet.findViewById(R.id.txtValor);
       linha.txtSimbolo = linhaDataSet.findViewById(R.id.txtSimbolo);
       linha.imgLogo = linhaDataSet.findViewById(R.id.imgLogo);
-      /*linha.imgLogo = linhaDataSet.findViewById(R.id.imgLogo);*/
-      //linha.imgSalvar = linhaDataSet.findViewById(R.id.imgSalvar);
       linhaDataSet.setTag(linha);
 
     } else {
@@ -96,16 +87,8 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
     linha.txtTituloMoeda.setText(coin.getTitle());
     linha.txtDataHora.setText(coin.getDateTime());
     linha.txtValor.setText(Utility.formatValue(coin.getValueBid().doubleValue()));
-    //linha.txtSimbolo.setText(coin.getSymbol());
     linha.txtSimbolo.setText("R$ ");
-    //linha.imgLogo.setImageResource(icDollar);
     linha.imgLogo.setImageDrawable(icon);
-    /*linha.imgLogo.setOnClickListener(this);*/
-    //linha.imgSalvar.setOnClickListener(this);
-    /*linha.imgLogo.setTag(position);*/
-    //linha.imgSalvar.setTag(position);
-
-    //return super.getView(position, convertView, parent);
     return linhaDataSet;
   }
 

@@ -30,8 +30,6 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
   SharedPrefManager sharedPrefManager = new SharedPrefManager();
   String urlCoins;
 
-  //public GetOnlineQuotations(ArrayList<Coin> coinList, Context context) {
-  //public GetOnlineQuotations(ArrayList<Coin> coinList) {
   public GetOnlineQuotations(Context context) {
     this.builder = new Uri.Builder();
     this.context = context;

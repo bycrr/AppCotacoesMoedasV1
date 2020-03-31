@@ -30,14 +30,6 @@ public class CoinsFragment extends Fragment {
     coinsViewModel =
       ViewModelProviders.of(this).get(CoinsViewModel.class);
     View root = inflater.inflate(R.layout.fragment_coins, container, false);
-    /*final TextView textView = root.findViewById(R.id.text_home);
-    coinsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-      @Override
-      public void onChanged(@Nullable String s) {
-        textView.setText(s);
-      }
-    });*/
-
     sharedPrefManager = new SharedPrefManager();
     urlCoins = sharedPrefManager.readUrlCoins(getContext());
     coinArrayList = new ArrayList<>();
@@ -47,7 +39,6 @@ public class CoinsFragment extends Fragment {
     CheckBox chkBox;
 
     for (String codeFull : codeList) {
-      //coinArrayList.add(sharedPrefManager.readCoin(code.substring(0,3), getContext()));
       if (!codeFull.isEmpty()) {
         code = codeFull.substring(0, 3);
 

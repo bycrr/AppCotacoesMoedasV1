@@ -19,7 +19,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import br.com.bycrr.v1.appcotacoesmoedas.R;
 import br.com.bycrr.v1.appcotacoesmoedas.ui.coins.CoinsFragment;
@@ -33,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
   private AppBarConfiguration mAppBarConfiguration;
   FragmentManager fragmentManager;
-  /*ArrayList<Coin> coinArrayList;
-  ListCoin listCoin;*/
   SharedPrefManager sharedPrefManager;
   String urlCoins;
 
@@ -48,8 +45,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-          .setAction("Action", null).show();
+        /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+          .setAction("Action", null).show();*/
+        GetOnlineQuotations task = new GetOnlineQuotations(getApplicationContext());
+        task.execute();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new QuotationFragment()).commit();
       }
     });
     DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -61,10 +61,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     navigationView = findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
     fragmentManager = getSupportFragmentManager();
-    /*this.coinArrayList = new ArrayList<>();
-    GetOnlineQuotations task = new GetOnlineQuotations(coinArrayList, getApplicationContext());
-    listCoin.setCoinArrayList(coinArrayList);
-    //this.coinArrayList = task.coinArrayList;*/
     GetOnlineQuotations task = new GetOnlineQuotations(getApplicationContext());
     task.execute();
   }
@@ -83,17 +79,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       || super.onSupportNavigateUp();
   }
 
-  /*@Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    int id = item.getItemId();
-
-    if (id == R.id.action_sair) {
-      finish();
-      return true;
-    }
-    return super.onOptionsItemSelected(item);
-  }*/
-
   @Override
   public boolean onNavigationItemSelected(MenuItem item) {
     int id = item.getItemId();
@@ -108,7 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     } else if (id == R.id.nav_quotation) {
       setTitle("Cotações");
-      //fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new QuotationFragment(this.coinArrayList)).commit();
       fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new QuotationFragment()).commit();
 
     } else if (id == R.id.nav_share) {
