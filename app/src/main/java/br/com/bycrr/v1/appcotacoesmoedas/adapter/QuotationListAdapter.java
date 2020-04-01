@@ -59,7 +59,7 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
   @Override
   public View getView(int position, View linhaDataSet, @NonNull ViewGroup parent) {
     coin = getItem(position);
-    Drawable icon = getContext().getResources().getDrawable(R.mipmap.ic_launcher);  // bitcoin
+    Drawable icon = getContext().getResources().getDrawable(R.mipmap.ic_coin);  // generic coin
 
     if (linhaDataSet == null) {
       linha = new ViewHolder();
@@ -75,7 +75,10 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
     } else {
       linha = (ViewHolder) linhaDataSet.getTag();
     }
-    if (coin.getCode().equals("USD")) {
+    if (coin.getCode().equals("BTC")) {
+      icon = getContext().getResources().getDrawable(R.mipmap.ic_launcher);
+
+    } else if (coin.getCode().equals("USD") || coin.getCode().equals("USDT")) {
       icon = getContext().getResources().getDrawable(R.mipmap.ic_dollar);
 
     } else if (coin.getCode().equals("EUR")) {
@@ -83,6 +86,15 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
 
     } else if (coin.getCode().equals("GBP")) {
       icon = getContext().getResources().getDrawable(R.mipmap.ic_libra);
+
+    } else if (coin.getCode().equals("LTC")) {
+      icon = getContext().getResources().getDrawable(R.mipmap.ic_litecoin);
+
+    } else if (coin.getCode().equals("ETH")) {
+      icon = getContext().getResources().getDrawable(R.mipmap.ic_ethereum);
+
+    } else if (coin.getCode().equals("XRP")) {
+      icon = getContext().getResources().getDrawable(R.mipmap.ic_ripple);
     }
     linha.txtTituloMoeda.setText(coin.getTitle());
     linha.txtDataHora.setText(coin.getDateTime());

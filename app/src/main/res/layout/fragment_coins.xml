@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
   <TextView
     android:layout_width="match_parent"
@@ -10,35 +11,148 @@
     android:layout_margin="20dp"
     android:gravity="center_horizontal"
     android:text="Escolha as moedas para cotação"
-    android:textSize="20sp"
-    />
+    android:textSize="20sp" />
 
-  <CheckBox android:id="@+id/checkbox_btc"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="15dp"
-    android:text="@string/txtMoedaBTC"
-    android:onClick="onCheckboxClicked"/>
+  <ScrollView
+    android:id="@+id/scrollView2"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0">
 
-  <CheckBox android:id="@+id/checkbox_usd"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="15dp"
-    android:text="@string/txtMoedaUSD"
-    android:onClick="onCheckboxClicked"/>
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
 
-  <CheckBox android:id="@+id/checkbox_eur"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="15dp"
-    android:text="@string/txtMoedaEUR"
-    android:onClick="onCheckboxClicked"/>
+      <CheckBox
+        android:id="@+id/checkbox_btc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaBTC" />
 
-  <CheckBox android:id="@+id/checkbox_gbp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="15dp"
-    android:text="@string/txtMoedaGBP"
-    android:onClick="onCheckboxClicked"/>
+      <CheckBox
+        android:id="@+id/checkbox_usd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaUSD" />
 
-</LinearLayout>
+      <CheckBox
+        android:id="@+id/checkbox_eur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaEUR" />
+
+      <CheckBox
+        android:id="@+id/checkbox_gbp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaGBP" />
+
+      <CheckBox
+        android:id="@+id/checkbox_usdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaUSDT" />
+
+      <CheckBox
+        android:id="@+id/checkbox_cad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaCAD" />
+
+      <CheckBox
+        android:id="@+id/checkbox_ars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaARS" />
+
+      <CheckBox
+        android:id="@+id/checkbox_aud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaAUD" />
+
+      <CheckBox
+        android:id="@+id/checkbox_jpy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaJPY" />
+
+      <CheckBox
+        android:id="@+id/checkbox_chf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaCHF" />
+
+      <CheckBox
+        android:id="@+id/checkbox_cny"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaCNY" />
+
+      <!--<CheckBox
+        android:id="@+id/checkbox_yls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaYLS" />-->
+
+      <CheckBox
+        android:id="@+id/checkbox_ltc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaLTC" />
+
+      <CheckBox
+        android:id="@+id/checkbox_eth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaETH" />
+
+      <CheckBox
+        android:id="@+id/checkbox_xrp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:onClick="onCheckboxClicked"
+        android:text="@string/txtMoedaXRP" />
+
+    </LinearLayout>
+  </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

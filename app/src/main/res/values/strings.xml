@@ -22,4 +22,15 @@
   <string name="txtMoedaEUR">EUR - Euro</string>
   <string name="txtMoedaBTC">BTC - Bitcon</string>
   <string name="txtMoedaGBP">GBP - Libra Esterlina</string>
+    <string name="txtMoedaUSDT">USDT - Dólar Turismo</string>
+  <string name="txtMoedaCAD">CAD - Dólar Canadense</string>
+  <string name="txtMoedaAUD">AUD - Dólar Australiano</string>
+  <string name="txtMoedaARS">ARS - Peso Argentino</string>
+  <string name="txtMoedaJPY">JPY - Iene Japonês</string>
+  <string name="txtMoedaCHF">CHF - Franco Suíço</string>
+  <string name="txtMoedaCNY">CNY - Yuan Chinês</string>
+  <string name="txtMoedaYLS">YLS - Novo Shekel Israelense</string>
+  <string name="txtMoedaLTC">LTC - Litecoin</string>
+  <string name="txtMoedaETH">ETH - Ethereum</string>
+  <string name="txtMoedaXRP">XRP - Ripple</string>
 </resources>

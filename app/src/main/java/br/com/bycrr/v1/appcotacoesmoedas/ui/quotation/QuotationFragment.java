@@ -47,7 +47,7 @@ public class QuotationFragment extends Fragment {
 
     for (String code: codeList) {
       if (!code.isEmpty()) {
-        coinArrayList.add(sharedPrefManager.readCoin(code.substring(0, 3), getContext()));
+        coinArrayList.add(sharedPrefManager.readCoin(code.substring(0, code.indexOf("-")), getContext()));
       }
     }
     final QuotationListAdapter adapter = new QuotationListAdapter(coinArrayList, getContext());

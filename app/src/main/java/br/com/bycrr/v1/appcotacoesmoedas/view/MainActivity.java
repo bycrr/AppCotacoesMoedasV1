@@ -138,6 +138,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       case R.id.checkbox_gbp:
         code = "GBP";
         break;
+
+      case R.id.checkbox_usdt:
+        code = "USDT";
+        break;
+
+      case R.id.checkbox_cad:
+        code = "CAD";
+        break;
+
+      case R.id.checkbox_aud:
+        code = "AUD";
+        break;
+
+      case R.id.checkbox_ars:
+        code = "ARS";
+        break;
+
+      case R.id.checkbox_jpy:
+        code = "JPY";
+        break;
+
+      case R.id.checkbox_chf:
+        code = "CHF";
+        break;
+
+      case R.id.checkbox_cny:
+        code = "CNY";
+        break;
+
+      /*case R.id.checkbox_yls:
+        code = "YLS";
+        break;*/
+
+      case R.id.checkbox_ltc:
+        code = "LTC";
+        break;
+
+      case R.id.checkbox_eth:
+        code = "ETH";
+        break;
+
+      case R.id.checkbox_xrp:
+        code = "XRP";
+        break;
     }
     if (code != null) {
 

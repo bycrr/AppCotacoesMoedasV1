@@ -120,13 +120,22 @@ public class GetOnlineQuotations extends AsyncTask<String, String, String> {
     try {
       JSONObject objJson = new JSONObject(result);
       List<String> codeList = Utility.getCodeList(urlCoins);
+      String usdtFDP;  // TODO: o json que retorna da API está com erro, não sei algum dia vai ter correção...
 
       for (String code: codeList) {
-        JSONObject jsonArrayCoin = objJson.getJSONObject(code.substring(0,3));
+        JSONObject jsonArrayCoin = objJson.getJSONObject(code.substring(0, code.indexOf("-")));
+        usdtFDP = jsonArrayCoin.getString("codein");
         coin = new Coin();
-        coin.setCode(jsonArrayCoin.getString("code"));
+
+        if (usdtFDP.equals("BRLT")) {
+          coin.setCode("USDT");
+
+        } else {
+          coin.setCode(jsonArrayCoin.getString("code"));
+        }
         coin.setTitle(jsonArrayCoin.getString("name"));
-        coin.setSymbol(Utility.getSymbol(jsonArrayCoin.getString("code")));
+        //coin.setSymbol(Utility.getSymbol(jsonArrayCoin.getString("code")));
+        coin.setSymbol("R$ ");
         coin.setValueBid(BigDecimal.valueOf(jsonArrayCoin.getDouble("bid")));
         coin.setValueAsk(BigDecimal.valueOf(jsonArrayCoin.getDouble("ask")));
         coin.setDateTime(jsonArrayCoin.getString("create_date"));

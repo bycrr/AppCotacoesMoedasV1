@@ -31,7 +31,7 @@ public class Utility {
   private static HttpURLConnection connection;
 
   public static String formatValue(Double valor) {
-    DecimalFormat df = new DecimalFormat("#,###,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
+    DecimalFormat df = new DecimalFormat("#,###,##0.0000", new DecimalFormatSymbols(new Locale("pt", "BR")));
     return df.format(valor);
   }
 

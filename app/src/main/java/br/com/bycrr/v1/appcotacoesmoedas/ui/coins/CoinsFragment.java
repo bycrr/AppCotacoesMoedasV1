@@ -40,7 +40,7 @@ public class CoinsFragment extends Fragment {
 
     for (String codeFull : codeList) {
       if (!codeFull.isEmpty()) {
-        code = codeFull.substring(0, 3);
+        code = codeFull.substring(0, codeFull.indexOf("-"));
 
         if (code.equals("BTC")) {
           chkBox = root.findViewById(R.id.checkbox_btc);
@@ -56,6 +56,50 @@ public class CoinsFragment extends Fragment {
 
         } else if (code.equals("GBP")) {
           chkBox = root.findViewById(R.id.checkbox_gbp);
+          chkBox.setChecked(true);
+
+        } else if (code.equals("USDT")) {
+          chkBox = root.findViewById(R.id.checkbox_usdt);
+          chkBox.setChecked(true);
+
+        } else if (code.equals("CAD")) {
+          chkBox = root.findViewById(R.id.checkbox_cad);
+          chkBox.setChecked(true);
+
+        } else if (code.equals("AUD")) {
+          chkBox = root.findViewById(R.id.checkbox_aud);
+          chkBox.setChecked(true);
+
+        } else if (code.equals("ARS")) {
+          chkBox = root.findViewById(R.id.checkbox_ars);
+          chkBox.setChecked(true);
+
+        } else if (code.equals("JPY")) {
+          chkBox = root.findViewById(R.id.checkbox_jpy);
+          chkBox.setChecked(true);
+
+        } else if (code.equals("CHF")) {
+          chkBox = root.findViewById(R.id.checkbox_chf);
+          chkBox.setChecked(true);
+
+        } else if (code.equals("CNY")) {
+          chkBox = root.findViewById(R.id.checkbox_cny);
+          chkBox.setChecked(true);
+
+        /*} else if (code.equals("YLS")) {
+          chkBox = root.findViewById(R.id.checkbox_yls);
+          chkBox.setChecked(true);*/
+
+        } else if (code.equals("LTC")) {
+          chkBox = root.findViewById(R.id.checkbox_ltc);
+          chkBox.setChecked(true);
+
+        } else if (code.equals("ETH")) {
+          chkBox = root.findViewById(R.id.checkbox_eth);
+          chkBox.setChecked(true);
+
+        } else if (code.equals("XRP")) {
+          chkBox = root.findViewById(R.id.checkbox_xrp);
           chkBox.setChecked(true);
         }
       }
