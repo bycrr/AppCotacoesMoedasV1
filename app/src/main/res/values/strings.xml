@@ -33,4 +33,6 @@
   <string name="txtMoedaLTC">LTC - Litecoin</string>
   <string name="txtMoedaETH">ETH - Ethereum</string>
   <string name="txtMoedaXRP">XRP - Ripple</string>
+    <string name="txtOpcoesConfiguracao">Escolha as opções</string>
+  <string name="txtMoedasParaCotacao">Escolha as moedas para cotação</string>
 </resources>

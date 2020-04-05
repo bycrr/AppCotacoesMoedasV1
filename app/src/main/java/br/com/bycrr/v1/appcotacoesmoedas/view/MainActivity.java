@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
+import android.widget.Switch;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
   public void onCheckboxClicked(View view) {
     // Is the view now checked?
-    boolean checked = ((CheckBox) view).isChecked();
+    boolean checked = ((Switch) view).isChecked();
     sharedPrefManager = new SharedPrefManager();
     urlCoins = sharedPrefManager.readUrlCoins(getApplicationContext());
     String code = null;
