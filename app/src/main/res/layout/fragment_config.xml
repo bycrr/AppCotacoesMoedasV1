@@ -55,22 +55,24 @@
           android:orientation="vertical">
 
           <RadioGroup
-            android:id="@+id/radioGrpImagem"
+            android:id="@+id/radioGrpImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
           <RadioButton
-            android:id="@+id/radioMostrarIconeMoeda"
+            android:id="@+id/radioShowIconCoin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:onClick="onConfigClicked"
             android:text="Mostrar icone da moeda" />
 
           <RadioButton
-            android:id="@+id/radioMostrarBandeiraMoeda"
+            android:id="@+id/radioShowFlagCoin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:onClick="onConfigClicked"
             android:text="Mostrar bandeira da moeda" />
 
           </RadioGroup>
@@ -92,29 +94,32 @@
           android:orientation="vertical">
 
           <RadioGroup
-            android:id="@+id/radioGrpOrdem"
+            android:id="@+id/radioGrpOrder"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
           <RadioButton
-            android:id="@+id/radioOrdemMoeda"
+            android:id="@+id/radioOrderCoin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:onClick="onConfigClicked"
             android:text="Ordem por moeda" />
 
           <RadioButton
-            android:id="@+id/radioOrdemData"
+            android:id="@+id/radioOrderDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:onClick="onConfigClicked"
             android:text="Ordem por data" />
 
           <RadioButton
-            android:id="@+id/radioOrdemValor"
+            android:id="@+id/radioOrderValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:onClick="onConfigClicked"
             android:text="Ordem por valor" />
 
           </RadioGroup>

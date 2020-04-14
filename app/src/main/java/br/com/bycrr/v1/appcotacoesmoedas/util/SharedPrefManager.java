@@ -46,6 +46,18 @@ public class SharedPrefManager {
     return coin;
   }
 
+  public void saveConfig(String name, String value, Context context) {
+    android.content.SharedPreferences appCotacoesMoedasPref = context.getSharedPreferences(this.SHARED_PREFER_NAME, Context.MODE_PRIVATE);
+    android.content.SharedPreferences.Editor editor = appCotacoesMoedasPref.edit();
+    editor.putString(name, value);
+    editor.commit();
+  }
+
+  public String readConfig(String name, Context context) {
+    android.content.SharedPreferences appCotacoesMoedasPref = context.getSharedPreferences(this.SHARED_PREFER_NAME, Context.MODE_PRIVATE);
+    return appCotacoesMoedasPref.getString(name, "erro");
+  }
+
   public void clearSharedPreferences(Context context) {
     android.content.SharedPreferences appCotacoesMoedasPref = context.getSharedPreferences(this.SHARED_PREFER_NAME, Context.MODE_PRIVATE);
     android.content.SharedPreferences.Editor editor = appCotacoesMoedasPref.edit();

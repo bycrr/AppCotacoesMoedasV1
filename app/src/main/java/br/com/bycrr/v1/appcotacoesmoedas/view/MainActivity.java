@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.Switch;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -195,4 +196,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     sharedPrefManager.saveUrlCoins(urlCoins, getApplicationContext());
   }
 
+  public void onConfigClicked(View view) {
+    // Is the view now checked?
+    boolean checked = ((RadioButton) view).isChecked();
+    sharedPrefManager = new SharedPrefManager();
+    //urlCoins = sharedPrefManager.readUrlCoins(getApplicationContext());
+    String config = null;
+    String value = "erro";
+
+    // Check which checkbox was clicked
+    switch (view.getId()) {
+
+      case R.id.radioShowIconCoin:
+        config = "showIconFlag";
+        value = "icon";
+        break;
+
+      case R.id.radioShowFlagCoin:
+        config = "showIconFlag";
+        value = "flag";
+        break;
+
+      case R.id.radioOrderCoin:
+        config = "order";
+        value = "coin";
+        break;
+
+      case R.id.radioOrderDate:
+        config = "order";
+        value = "date";
+        break;
+
+      case R.id.radioOrderValue:
+        config = "order";
+        value = "value";
+        break;
+    }
+    if (config != null) {
+
+      if (checked) {
+        sharedPrefManager.saveConfig(config, value, getApplicationContext());
+
+      } else {
+        sharedPrefManager.saveConfig(config, " ", getApplicationContext());
+      }
+    }
+  }
 }
