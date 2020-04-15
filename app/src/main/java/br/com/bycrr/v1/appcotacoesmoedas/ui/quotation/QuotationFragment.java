@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import br.com.bycrr.v1.appcotacoesmoedas.R;
@@ -26,7 +28,7 @@ public class QuotationFragment extends Fragment {
   View view;
   ArrayList<Coin> coinArrayList;
   SharedPrefManager sharedPrefManager;
-  String urlCoins;
+  String urlCoins, showIconFlag, order;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -50,8 +52,41 @@ public class QuotationFragment extends Fragment {
         coinArrayList.add(sharedPrefManager.readCoin(code.substring(0, code.indexOf("-")), getContext()));
       }
     }
-    final QuotationListAdapter adapter = new QuotationListAdapter(coinArrayList, getContext());
+    showIconFlag = sharedPrefManager.readConfig("showIconFlag", getContext());
+    order = sharedPrefManager.readConfig("order", getContext());
+    Collections.sort(coinArrayList, new ComparatorCoins(order));
+
+    final QuotationListAdapter adapter = new QuotationListAdapter(coinArrayList, showIconFlag, getContext());
     listView.setAdapter(adapter);
     return view;
+  }
+
+  class ComparatorCoins implements Comparator<Coin> {
+    String order;
+    public ComparatorCoins(String order) {
+      this.order = order;
+    }
+    public int compare(Coin coin1, Coin coin2) {
+
+      switch (order) {
+        case "value":
+          if (coin1.getValueBid().doubleValue() < coin2.getValueBid().doubleValue())
+            return -1;
+          else
+            return +1;
+
+        case "date":
+          if (coin1.getDateTime().compareTo(coin2.getDateTime()) < 0)
+            return -1;
+          else
+            return +1;
+
+        default:
+          if (coin1.getTitle().compareTo(coin2.getTitle()) < 0)
+            return -1;
+          else
+            return +1;
+      }
+    }
   }
 }
