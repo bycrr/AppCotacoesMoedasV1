@@ -28,7 +28,7 @@ public class QuotationFragment extends Fragment {
   View view;
   ArrayList<Coin> coinArrayList;
   SharedPrefManager sharedPrefManager;
-  String urlCoins, showIconFlag, order;
+  String urlCoins, showIconFlag, order, direction;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,8 @@ public class QuotationFragment extends Fragment {
     }
     showIconFlag = sharedPrefManager.readConfig("showIconFlag", getContext());
     order = sharedPrefManager.readConfig("order", getContext());
-    Collections.sort(coinArrayList, new ComparatorCoins(order));
+    direction = sharedPrefManager.readConfig("directAscDes", getContext());
+    Collections.sort(coinArrayList, new ComparatorCoins(order, direction));
 
     final QuotationListAdapter adapter = new QuotationListAdapter(coinArrayList, showIconFlag, getContext());
     listView.setAdapter(adapter);
@@ -62,30 +63,31 @@ public class QuotationFragment extends Fragment {
   }
 
   class ComparatorCoins implements Comparator<Coin> {
-    String order;
-    public ComparatorCoins(String order) {
+    String order, direction;
+    public ComparatorCoins(String order, String direction) {
       this.order = order;
+      this.direction = direction;
     }
     public int compare(Coin coin1, Coin coin2) {
 
       switch (order) {
         case "value":
           if (coin1.getValueBid().doubleValue() < coin2.getValueBid().doubleValue())
-            return -1;
+            return (direction.equals("asc") ? -1 : +1);
           else
-            return +1;
+            return (direction.equals("asc") ? +1 : -1);
 
         case "date":
           if (coin1.getDateTime().compareTo(coin2.getDateTime()) < 0)
-            return -1;
+            return (direction.equals("asc") ? -1 : +1);
           else
-            return +1;
+            return (direction.equals("asc") ? +1 : -1);
 
         default:
           if (coin1.getTitle().compareTo(coin2.getTitle()) < 0)
-            return -1;
+            return (direction.equals("asc") ? -1 : +1);
           else
-            return +1;
+            return (direction.equals("asc") ? +1 : -1);
       }
     }
   }

@@ -31,14 +31,33 @@ public class ConfigFragment extends Fragment {
       }
     });*/
     sharedPrefManager = new SharedPrefManager();
+    String direction = sharedPrefManager.readConfig("directAscDes", getContext());
     String showIconFlag = sharedPrefManager.readConfig("showIconFlag", getContext());
     String order = sharedPrefManager.readConfig("order", getContext());
+    RadioButton directAsc = root.findViewById(R.id.radioAscending);
+    RadioButton directDes = root.findViewById(R.id.radioDescending);
     RadioButton showIcon = root.findViewById(R.id.radioShowIconCoin);
     RadioButton showFlag = root.findViewById(R.id.radioShowFlagCoin);
     RadioButton orderCoin = root.findViewById(R.id.radioOrderCoin);
     RadioButton orderDate = root.findViewById(R.id.radioOrderDate);
     RadioButton orderValue = root.findViewById(R.id.radioOrderValue);
 
+    switch (direction) {
+      case "asc":
+        directAsc.setChecked(true);
+        directDes.setChecked(false);
+        break;
+
+      case "des":
+        directAsc.setChecked(false);
+        directDes.setChecked(true);
+        break;
+
+      default:
+        directAsc.setChecked(false);
+        directDes.setChecked(false);
+        break;
+    }
     switch (showIconFlag) {
       case "icon":
         showIcon.setChecked(true);

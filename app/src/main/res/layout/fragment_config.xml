@@ -54,29 +54,61 @@
           android:layout_gravity="center"
           android:orientation="vertical">
 
-          <RadioGroup
-            android:id="@+id/radioGrpImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-          <RadioButton
-            android:id="@+id/radioShowIconCoin"
+          <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:onClick="onConfigClicked"
-            android:text="Mostrar icone da moeda" />
+            android:orientation="horizontal">
 
-          <RadioButton
-            android:id="@+id/radioShowFlagCoin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:onClick="onConfigClicked"
-            android:text="Mostrar bandeira da moeda" />
+            <LinearLayout
+              android:layout_width="100dp"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
 
-          </RadioGroup>
+              <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Sentido" />
 
+            </LinearLayout>
+
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+              <RadioGroup
+                android:id="@+id/radioGrpDirection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                  android:id="@+id/radioAscending"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginTop="20dp"
+                  android:layout_marginRight="20dp"
+                  android:layout_marginBottom="10dp"
+                  android:onClick="onConfigClicked"
+                  android:text="Menor para Maior" />
+
+                <RadioButton
+                  android:id="@+id/radioDescending"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginRight="20dp"
+                  android:layout_marginBottom="20dp"
+                  android:onClick="onConfigClicked"
+                  android:text="Maior para Menor" />
+
+              </RadioGroup>
+            </LinearLayout>
+          </LinearLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
       </androidx.cardview.widget.CardView>
 
@@ -93,39 +125,145 @@
           android:layout_gravity="center"
           android:orientation="vertical">
 
-          <RadioGroup
-            android:id="@+id/radioGrpOrder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-          <RadioButton
-            android:id="@+id/radioOrderCoin"
+          <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:onClick="onConfigClicked"
-            android:text="Ordem por moeda" />
+            android:orientation="horizontal">
 
-          <RadioButton
-            android:id="@+id/radioOrderDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:onClick="onConfigClicked"
-            android:text="Ordem por data" />
+            <LinearLayout
+              android:layout_width="100dp"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
 
-          <RadioButton
-            android:id="@+id/radioOrderValue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:onClick="onConfigClicked"
-            android:text="Ordem por valor" />
+              <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Mostrar" />
 
-          </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+              <RadioGroup
+                android:id="@+id/radioGrpImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                  android:id="@+id/radioShowIconCoin"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginTop="20dp"
+                  android:layout_marginRight="20dp"
+                  android:layout_marginBottom="10dp"
+                  android:onClick="onConfigClicked"
+                  android:text="Icone da moeda" />
+
+                <RadioButton
+                  android:id="@+id/radioShowFlagCoin"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginRight="20dp"
+                  android:layout_marginBottom="20dp"
+                  android:onClick="onConfigClicked"
+                  android:text="Bandeira da moeda" />
+
+              </RadioGroup>
+            </LinearLayout>
+          </LinearLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
       </androidx.cardview.widget.CardView>
 
+      <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="8dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:orientation="vertical">
+
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+              android:layout_width="100dp"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+              <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Ordem" />
+
+            </LinearLayout>
+
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+              <RadioGroup
+                android:id="@+id/radioGrpOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                  android:id="@+id/radioOrderCoin"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginTop="20dp"
+                  android:layout_marginRight="20dp"
+                  android:layout_marginBottom="10dp"
+                  android:onClick="onConfigClicked"
+                  android:text="Por moeda" />
+
+                <RadioButton
+                  android:id="@+id/radioOrderDate"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginRight="20dp"
+                  android:layout_marginBottom="10dp"
+                  android:onClick="onConfigClicked"
+                  android:text="Por data" />
+
+                <RadioButton
+                  android:id="@+id/radioOrderValue"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginRight="20dp"
+                  android:layout_marginBottom="20dp"
+                  android:onClick="onConfigClicked"
+                  android:text="Por valor" />
+
+              </RadioGroup>
+            </LinearLayout>
+          </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+      </androidx.cardview.widget.CardView>
     </LinearLayout>
   </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

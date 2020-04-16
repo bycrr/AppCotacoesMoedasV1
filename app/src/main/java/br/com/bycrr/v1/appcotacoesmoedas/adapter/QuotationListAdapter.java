@@ -81,31 +81,31 @@ public class QuotationListAdapter extends ArrayAdapter<Coin> implements View.OnC
       icon = getContext().getResources().getDrawable(R.mipmap.ic_launcher);
 
     } else if (coin.getCode().equals("USD") || coin.getCode().equals("USDT")) {
-      icon = getContext().getResources().getDrawable((showIconFlag.equals("icon") ? R.mipmap.ic_dollar : R.mipmap.ic_usd_flag ));
+      icon = getContext().getResources().getDrawable(showIconFlag.equals("icon") ? R.mipmap.ic_dollar : R.mipmap.ic_usd_flag);
 
     } else if (coin.getCode().equals("EUR")) {
-      icon = getContext().getResources().getDrawable((showIconFlag.equals("icon") ? R.mipmap.ic_euro : R.mipmap.ic_eur_flag ));
+      icon = getContext().getResources().getDrawable(showIconFlag.equals("icon") ? R.mipmap.ic_euro : R.mipmap.ic_eur_flag);
 
     } else if (coin.getCode().equals("GBP")) {
-      icon = getContext().getResources().getDrawable((showIconFlag.equals("icon") ? R.mipmap.ic_libra : R.mipmap.ic_gbp_flag));
+      icon = getContext().getResources().getDrawable(showIconFlag.equals("icon") ? R.mipmap.ic_libra : R.mipmap.ic_gbp_flag);
 
     } else if (coin.getCode().equals("CAD")) {
-      icon = getContext().getResources().getDrawable((showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_cad_flag));
+      icon = getContext().getResources().getDrawable(showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_cad_flag);
 
     } else if (coin.getCode().equals("AUD")) {
-      icon = getContext().getResources().getDrawable((showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_aud_flag));
+      icon = getContext().getResources().getDrawable(showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_aud_flag);
 
     } else if (coin.getCode().equals("ARS")) {
-      icon = getContext().getResources().getDrawable((showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_ars_flag));
+      icon = getContext().getResources().getDrawable(showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_ars_flag);
 
     } else if (coin.getCode().equals("JPY")) {
-      icon = getContext().getResources().getDrawable((showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_jpy_flag));
+      icon = getContext().getResources().getDrawable(showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_jpy_flag);
 
     } else if (coin.getCode().equals("CHF")) {
-      icon = getContext().getResources().getDrawable((showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_chf_flag));
+      icon = getContext().getResources().getDrawable(showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_chf_flag);
 
     } else if (coin.getCode().equals("CNY")) {
-      icon = getContext().getResources().getDrawable((showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_cny_flag));
+      icon = getContext().getResources().getDrawable(showIconFlag.equals("icon") ? R.mipmap.ic_coin : R.mipmap.ic_cny_flag);
 
     } else if (coin.getCode().equals("LTC")) {
       icon = getContext().getResources().getDrawable(R.mipmap.ic_litecoin);

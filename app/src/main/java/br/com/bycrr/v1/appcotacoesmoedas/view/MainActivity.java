@@ -207,6 +207,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Check which checkbox was clicked
     switch (view.getId()) {
 
+      case R.id.radioAscending:
+        config = "directAscDes";
+        value = "asc";
+        break;
+
+      case R.id.radioDescending:
+        config = "directAscDes";
+        value = "des";
+        break;
+
       case R.id.radioShowIconCoin:
         config = "showIconFlag";
         value = "icon";
