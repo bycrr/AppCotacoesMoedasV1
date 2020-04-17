@@ -1,5 +1,6 @@
 package br.com.bycrr.v1.appcotacoesmoedas.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -97,7 +98,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, new QuotationFragment()).commit();
 
     } else if (id == R.id.nav_share) {
+      // prá compartilhar via e-mail:
+      Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+      sharingIntent.setType("text/plain");
+      String shareBody = "Clica aqui: https://play.google.com/store/apps/details?id=com.facebook.katana";
+      sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Olha que app muito tri !!! " + this.getResources().getString(R.string.app_name));
+      sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+      startActivity(Intent.createChooser(sharingIntent, "Compartilhar via"));
+      DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+      drawer.closeDrawers();
+      return true;
+
+      /*Intent shareIntent = new Intent();
+      shareIntent.setAction(Intent.ACTION_VIEW);
+      shareIntent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.facebook.katana"));
+      startActivity(shareIntent);*/
+
+    } else if (id == R.id.nav_exit) {
+      finish();
     }
+
     DrawerLayout drawer = findViewById(R.id.drawer_layout);
     drawer.closeDrawer(GravityCompat.START);
     return true;
