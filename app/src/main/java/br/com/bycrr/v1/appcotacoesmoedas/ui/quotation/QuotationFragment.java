@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -23,6 +26,7 @@ import br.com.bycrr.v1.appcotacoesmoedas.util.Utility;
 
 public class QuotationFragment extends Fragment {
 
+  private AdView adView;
   private QuotationViewModel quotationViewModel;
   ListView listView;
   View view;
@@ -40,6 +44,11 @@ public class QuotationFragment extends Fragment {
     quotationViewModel =
       ViewModelProviders.of(this).get(QuotationViewModel.class);
     view = inflater.inflate(R.layout.fragment_quotation, container, false);
+
+    adView = view.findViewById(R.id.adView);
+    AdRequest adRequest = new AdRequest.Builder().build();
+    adView.loadAd(adRequest);
+
     listView = view.findViewById(R.id.listview);
     sharedPrefManager = new SharedPrefManager();
     coinArrayList = new ArrayList<>();

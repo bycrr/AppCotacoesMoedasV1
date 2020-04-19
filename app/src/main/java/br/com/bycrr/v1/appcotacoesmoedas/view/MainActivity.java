@@ -19,6 +19,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -41,6 +44,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    MobileAds.initialize(this, new OnInitializationCompleteListener() {
+      @Override
+      public void onInitializationComplete(InitializationStatus initializationStatus) {
+      }
+    });
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     FloatingActionButton fab = findViewById(R.id.fab);

@@ -10,11 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import br.com.bycrr.v1.appcotacoesmoedas.R;
 import br.com.bycrr.v1.appcotacoesmoedas.util.SharedPrefManager;
 
 public class ConfigFragment extends Fragment {
 
+  private AdView adView;
   private ConfigViewModel configViewModel;
   SharedPrefManager sharedPrefManager;
 
@@ -23,6 +27,11 @@ public class ConfigFragment extends Fragment {
     configViewModel =
       ViewModelProviders.of(this).get(ConfigViewModel.class);
     View root = inflater.inflate(R.layout.fragment_config, container, false);
+
+    adView = root.findViewById(R.id.adView);
+    AdRequest adRequest = new AdRequest.Builder().build();
+    adView.loadAd(adRequest);
+
     /*final TextView textView = root.findViewById(R.id.text_home);
     configViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
       @Override

@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +23,7 @@ import br.com.bycrr.v1.appcotacoesmoedas.util.Utility;
 
 public class CoinsFragment extends Fragment {
 
+  private AdView adView;
   private CoinsViewModel coinsViewModel;
   SharedPrefManager sharedPrefManager;
   String urlCoins;
@@ -30,6 +34,11 @@ public class CoinsFragment extends Fragment {
     coinsViewModel =
       ViewModelProviders.of(this).get(CoinsViewModel.class);
     View root = inflater.inflate(R.layout.fragment_coins, container, false);
+
+    adView = root.findViewById(R.id.adView);
+    AdRequest adRequest = new AdRequest.Builder().build();
+    adView.loadAd(adRequest);
+
     sharedPrefManager = new SharedPrefManager();
     urlCoins = sharedPrefManager.readUrlCoins(getContext());
     coinArrayList = new ArrayList<>();
