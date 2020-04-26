@@ -109,8 +109,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       // prá compartilhar via e-mail:
       Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
       sharingIntent.setType("text/plain");
-      String shareBody = "Clica aqui: https://play.google.com/store/apps/details?id=com.facebook.katana";
-      sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Olha que app muito tri !!! " + this.getResources().getString(R.string.app_name));
+      String shareBody = "Clica aqui: https://play.google.com/store/apps/details?id=br.com.bycrr.v1.appcotacoesmoedas";
+      sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Olha que app muito tri: " + this.getResources().getString(R.string.app_name));
       sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
       startActivity(Intent.createChooser(sharingIntent, "Compartilhar via"));
       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
